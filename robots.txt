@@ -1,0 +1,4 @@
+Allow: /
+Disallow: /typography
+Disallow: /test.html
+Sitemap: http://iost.me/sitemap.xml
