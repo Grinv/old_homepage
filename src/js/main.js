@@ -7,6 +7,7 @@ $(document).ready(function() {
     sectionsColor:['#000', '#000', '#000', '#000'],
     anchors:['main', 'about', 'portfolio', 'contacts'],
     menu: "#menu",
+    loopBottom: true,
     afterLoad: function(link, index){
       if($(".section.active .wrapper").hasClass('novisible') && index !=1 ){
         $(".section.active .wrapper").delay(2000).removeClass("novisible").addClass('visible animated fadeIn');
