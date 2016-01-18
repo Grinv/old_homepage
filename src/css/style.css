@@ -40,12 +40,10 @@ h4 {
 }
 h1 {
     color: #FFF;
-    font: 700 85px/75px 'Montserrat'
-}
-@media (max-width: 768px) {
-    h1 {
-        font: 700 75px/75px 'Montserrat';
-    }
+    font-weight: 700;
+    font-size: 6.1em;
+    line-height: 1em;
+    font-family: "Montserrat";
 }
 h2 {
     padding: 0;
@@ -55,18 +53,9 @@ h2 {
 h3 {
     font-family: 'Open Sans', Arial, Tahoma, sans-serif;
 }
-@media (max-width: 480px) {
-    h3 {
-        font-size: 1.1em;
-    }
-}
+
 p {
     font-family: 'Open Sans', Arial, Tahoma, sans-serif;
-}
-@media (max-width: 480px) {
-    p {
-        font-size: .9em;
-    }
 }
 #wrapper {
     margin: 0 auto;
@@ -93,25 +82,21 @@ a.mail:hover {
     right: 0;
     z-index: 1;
 }
-#section0 {
-    background-image: url('../img/bg/bg1.jpg');
+.section {
     background-repeat: no-repeat;
     background-size: cover;
+}
+#section0 {
+    background-image: url('../img/bg/bg1.jpg');
 }
 #section1 {
     background-image: url('../img/bg/bg2.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
 }
 #section2 {
     background-image: url('../img/bg/bg3.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
 }
 #section3 {
     background-image: url('../img/bg/bg4.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
 }
 .section.black h2 {
     color: #FFF;
@@ -135,6 +120,10 @@ a.mail:hover {
     color: #333;
     font-size: 2em;
 }
+.project-logo {
+    width: 40%;
+    max-width: 420px;
+}
 #menu {
     position: fixed;
     top: 0;
@@ -153,15 +142,7 @@ a.mail:hover {
     color: #777;
     text-decoration: none;
     text-transform: uppercase;
-    -webkit-transition: color .1s ease-out .05s;
-    -moz-transition: color .1s ease-out .05s;
-    -o-transition: color .1s ease-out .05s;
     transition: color .1s ease-out .05s;
-}
-@media (max-width: 768px) {
-    #menu li a {
-        font: 11px/18px Arial, Tahoma, sans-serif;
-    }
 }
 #menu li.active a {
     color: #FFF;
@@ -170,11 +151,6 @@ a.mail:hover {
     display: inline-block;
     padding: 1em;
     margin: 1em;
-}
-@media (max-width: 480px) {
-    #aboutPage {
-        margin: 0;
-    }
 }
 ul#links {
     padding: 0
@@ -187,9 +163,6 @@ ul#links li {
 ul#links li i {
     color: #333;
     font-size: 2em;
-    -webkit-transition: color .2s ease-out .1s;
-    -moz-transition: color .2s ease-out .1s;
-    -o-transition: color .2s ease-out .1s;
     transition: color .2s ease-out .1s;
     opacity: .7;
 }
@@ -202,48 +175,49 @@ a.mail {
     display: inline-block;
     margin-bottom: 30px;
     background: rgba(0, 0, 0, .5);
-    font: normal 300 20px 'Open Sans'!important;
+    font: normal 300 20px 'Open Sans';
     text-decoration: none;
-    -webkit-transition: background .2s ease-out .1s;
-    -moz-transition: background .2s ease-out .1s;
-    -o-transition: background .2s ease-out .1s;
     transition: background .2s ease-out .1s;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    -o-border-radius: 4px;
     border-radius: 4px;
 }
-a.mail i {
-    color: #ddd!important;
-    font-size: 1.2em!important
+.section a.mail i {
+    color: #DDD;
+    font-size: 1.2em;
 }
 @media (max-width: 768px) {
+    h1 {
+        font-size: 5.35em;
+    }
+    #menu li a {
+        font: 11px/18px Arial, Tahoma, sans-serif;
+    }
     .fp-controlArrow.fp-prev {
-        border-width: 28.5px 24px 28.5px 0!important;
+        border-width: 28.5px 24px 28.5px 0 !important;
+    }
+    .fp-controlArrow.fp-next {
+        border-width: 28.5px 0 28.5px 24px !important;
+    }
+    .fp-controlArrow {
+        margin-top: -28px !important;
+    }
+    .fp-controlArrow {
+        margin-top: -13px !important;
     }
 }
 @media (max-width: 480px) {
+    h3 {
+        font-size: 1.1em;
+    }
+    #aboutPage {
+        margin: 0;
+    }
+    p {
+        font-size: 0.9em;
+    }
     .fp-controlArrow.fp-prev {
-        border-width: 13.5px 9px 13.5px 0!important;
+        border-width: 13.5px 9px 13.5px 0 !important;
     }
-}
-@media (max-width: 768px) {
     .fp-controlArrow.fp-next {
-        border-width: 28.5px 0 28.5px 24px!important;
-    }
-}
-@media (max-width: 480px) {
-    .fp-controlArrow.fp-next {
-        border-width: 13.5px 0 13.5px 9px!important;
-    }
-}
-@media (max-width: 768px) {
-    .fp-controlArrow {
-        margin-top: -28px!important;
-    }
-}
-@media (max-width: 480px) {
-    .fp-controlArrow {
-        margin-top: -13px!important;
+        border-width: 13.5px 0 13.5px 9px !important;
     }
 }
