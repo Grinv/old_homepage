@@ -1,7 +1,7 @@
 var gulp = require('gulp'),
-    watch = require('gulp-watch'),
+    prefixer = require('gulp-autoprefixer'),
     uglify = require('gulp-uglify'),
-    sourcemaps = require('gulp-sourcemaps'),
+    sass = require('gulp-sass'),
     cssmin = require('gulp-minify-css'),
     imagemin = require('gulp-imagemin'),
     pngquant = require('imagemin-pngquant'),
@@ -19,12 +19,14 @@ var path = {
       html: 'src/*.html', //Синтаксис src/*.html говорит gulp что мы хотим взять все файлы с расширением .html
       js: 'src/js/*.js',//В стилях и скриптах нам понадобятся только main файлы
       style: 'src/css/*.css',
+      scss: 'src/css/style.scss',
       img: 'src/img/**/*.*', //Синтаксис img/**/*.* означает - взять все файлы всех расширений из папки и из вложенных каталогов
       fonts: 'src/fonts/**/*.*'
     },
     watch: { //Тут мы укажем, за изменением каких файлов мы хотим наблюдать
       js: 'src/js/**/*.js',
       style: 'src/css/**/*.css',
+      scss: 'src/css/style.scss',
       img: 'src/img/**/*.*',
       fonts: 'src/fonts/**/*.*'
     },
@@ -37,17 +39,21 @@ gulp.task('clean', function (cb) {
 
 gulp.task('js:build', function () {
     gulp.src(path.src.js)
-        .pipe(sourcemaps.init())
         .pipe(uglify())
-        .pipe(sourcemaps.write())
         .pipe(gulp.dest(path.build.js));
 });
 
 gulp.task('style:build', function () {
   gulp.src(path.src.style)
-    .pipe(sourcemaps.init())
     .pipe(cssmin())
-    .pipe(sourcemaps.write())
+    .pipe(gulp.dest(path.build.css));
+});
+
+gulp.task('style_scss:build', function () {
+  gulp.src(path.src.scss)
+    .pipe(sass()) //Скомпилируем
+    .pipe(prefixer()) //Добавим вендорные префиксы
+    .pipe(cssmin())
     .pipe(gulp.dest(path.build.css));
 });
 
@@ -72,6 +78,7 @@ gulp.task('fonts:build', function() {
 gulp.task('build', [
     'js:build',
     'style:build',
+    'style_scss:build',
     'fonts:build',
     'image:build'
 ]);
@@ -79,6 +86,7 @@ gulp.task('build', [
 //наблюдаем за изменениями в файлах
 gulp.task('watch', function(){
     gulp.watch([path.watch.style], ['style:build']);
+    gulp.watch([path.watch.scss], ['style:build']);
     gulp.watch([path.watch.js], ['js:build']);
     gulp.watch([path.watch.img], ['image:build']);
     gulp.watch([path.watch.fonts], ['fonts:build']);
