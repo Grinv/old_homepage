@@ -5,6 +5,7 @@ var gulp = require('gulp'),
     cssmin = require('gulp-minify-css'),
     imagemin = require('gulp-imagemin'),
     pngquant = require('imagemin-pngquant'),
+    concat = require('gulp-concat'),
     rimraf = require('rimraf');
 
 var path = {
@@ -40,12 +41,14 @@ gulp.task('clean', function (cb) {
 gulp.task('js:build', function () {
     gulp.src(path.src.js)
         .pipe(uglify())
+        .pipe(concat('main.js'))
         .pipe(gulp.dest(path.build.js));
 });
 
 gulp.task('style:build', function () {
   gulp.src(path.src.style)
     .pipe(cssmin())
+    .pipe(concat('main.css'))
     .pipe(gulp.dest(path.build.css));
 });
 
