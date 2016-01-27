@@ -1,4 +1,5 @@
 var gulp = require('gulp'),
+		merge = require('merge-stream'),
     prefixer = require('gulp-autoprefixer'),
     uglify = require('gulp-uglify'),
     sass = require('gulp-sass'),
@@ -35,29 +36,36 @@ var path = {
 };
 
 gulp.task('clean', function (cb) {
-    rimraf(path.clean, cb);
+  rimraf(path.clean, cb);
 });
 
 gulp.task('js:build', function () {
-    gulp.src(path.src.js)
-        .pipe(uglify())
-        .pipe(concat('main.js'))
-        .pipe(gulp.dest(path.build.js));
+  gulp.src(path.src.js)
+    .pipe(uglify())
+    .pipe(concat('main.js'))
+    .pipe(gulp.dest(path.build.js));
 });
 
 gulp.task('style:build', function () {
-  gulp.src(path.src.style)
-    .pipe(cssmin())
-    .pipe(concat('main.css'))
-    .pipe(gulp.dest(path.build.css));
-});
+	var sassStream,
+			cssStream;
 
-gulp.task('style_scss:build', function () {
-  gulp.src(path.src.scss)
-    .pipe(sass()) //Скомпилируем
-    .pipe(prefixer()) //Добавим вендорные префиксы
-    .pipe(cssmin())
-    .pipe(gulp.dest(path.build.css));
+    //compile sass
+    sassStream =
+		  gulp.src(path.src.scss)
+		    .pipe(sass()) //Скомпилируем
+		    .pipe(prefixer()) //Добавим вендорные префиксы
+		    .pipe(cssmin())
+
+    //select additional css files
+    cssStream =
+      gulp.src(path.src.style)
+		    .pipe(cssmin())
+
+    //merge the two streams and concatenate their contents into a single file
+    return merge(cssStream, sassStream)
+      .pipe(concat('main.css'))
+      .pipe(gulp.dest(path.build.css));
 });
 
 gulp.task('image:build', function () {
@@ -81,7 +89,6 @@ gulp.task('fonts:build', function() {
 gulp.task('build', [
     'js:build',
     'style:build',
-    'style_scss:build',
     'fonts:build',
     'image:build'
 ]);
