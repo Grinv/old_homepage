@@ -1,9 +1,9 @@
 var gulp = require('gulp'),
-		merge = require('merge-stream'),
-    prefixer = require('gulp-autoprefixer'),
     uglify = require('gulp-uglify'),
     sass = require('gulp-sass'),
-    cssmin = require('gulp-minify-css'),
+		postcss = require('gulp-postcss');
+		autoprefixer = require('autoprefixer'),
+    cssnano = require('cssnano'),
     imagemin = require('gulp-imagemin'),
     pngquant = require('imagemin-pngquant'),
     concat = require('gulp-concat'),
@@ -41,31 +41,38 @@ gulp.task('clean', function (cb) {
 
 gulp.task('js:build', function () {
   gulp.src(path.src.js)
-    .pipe(uglify())
+    .pipe(uglify({ mangle: false }))
     .pipe(concat('main.js'))
     .pipe(gulp.dest(path.build.js));
 });
 
+var processorsCSS = [
+		cssnano({
+			discardComments: {
+				removeAll: true
+			},
+			reduceIdents: false,
+			mergeIdents: false
+		})
+	];
+
 gulp.task('style:build', function () {
-	var sassStream,
-			cssStream;
+  gulp.src(path.src.style)
+    .pipe(postcss(processorsCSS))
+    .pipe(concat('library.css'))
+    .pipe(gulp.dest(path.build.css));
+});
 
-    //compile sass
-    sassStream =
-		  gulp.src(path.src.scss)
-		    .pipe(sass()) //Скомпилируем
-		    .pipe(prefixer()) //Добавим вендорные префиксы
-		    .pipe(cssmin())
+var processorsSass = [
+	autoprefixer({ browsers: ['last 4 versions'] }),
+	cssnano({discardComments: {removeAll: true}})
+];
 
-    //select additional css files
-    cssStream =
-      gulp.src(path.src.style)
-		    .pipe(cssmin())
-
-    //merge the two streams and concatenate their contents into a single file
-    return merge(cssStream, sassStream)
-      .pipe(concat('main.css'))
-      .pipe(gulp.dest(path.build.css));
+gulp.task('style_scss:build', function () {
+  gulp.src(path.src.scss)
+    .pipe(sass()) //Скомпилируем
+    .pipe(postcss(processorsSass))
+    .pipe(gulp.dest(path.build.css));
 });
 
 gulp.task('image:build', function () {
@@ -89,6 +96,7 @@ gulp.task('fonts:build', function() {
 gulp.task('build', [
     'js:build',
     'style:build',
+		'style_scss:build',
     'fonts:build',
     'image:build'
 ]);
