@@ -6,7 +6,8 @@ var gulp = require('gulp'),
     imagemin = require('gulp-imagemin'),
     pngquant = require('imagemin-pngquant'),
     concat = require('gulp-concat'),
-    rimraf = require('rimraf');
+    rimraf = require('rimraf'),
+    webpack = require('webpack-stream');
 
 var path = {
     build: {
@@ -126,8 +127,6 @@ gulp.task('default', ['build', 'watch']);
 //   ).pipe(gulp.dest("dist"));
 // });
 
-var gulp = require('gulp');
-var webpack = require('webpack-stream');
 gulp.task('webpack', function() {
   return gulp.src('src/entry.js')
     .pipe(webpack(require('./webpack.config.js')))
