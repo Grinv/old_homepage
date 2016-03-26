@@ -1,0 +1,31 @@
+{
+  "name": "iost.me",
+  "description": "Homepage",
+  "main": "gulpfile.js",
+  "authors": [
+    "Konstantin Ostrovskii"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "iost",
+    "homepage"
+  ],
+  "homepage": "https://github.com/Grinv/grinv.github.io",
+  "moduleType": [],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^1.12.2",
+    "fullpage.js": "^2.7.8",
+    "animate.css": "^3.5.1",
+    "font-awesome": "fontawesome#^4.5.0"
+  },
+  "devDependencies": {
+  }
+}
