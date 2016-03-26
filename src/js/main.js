@@ -1,5 +1,5 @@
 define(['jquery'], function ($) {
-  $("#preload-box i").fadeIn(2000);
+  $("#preload-box i").delay(10).fadeIn(2000);
 });
 //fullpage
 define(['jquery', 'fullpage'], function ($, fullpage) {
