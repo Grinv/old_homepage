@@ -10,6 +10,7 @@ module.exports = {
     resolve: {
       alias: {
         jquery: "./jquery.min",
+        fullpage: "./jquery.fullPage.min"
       }
     },
     module: {

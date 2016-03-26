@@ -1,8 +1,8 @@
-$(document).ready(function() {
-  $("#preload-box i, .scrollDown").hide();
-  $("#preload-box i").delay(10).fadeIn(2000);
-  $(".wrapper, #links").addClass('novisible');
-  //fullpage
+define(['jquery'], function ($) {
+  $("#preload-box i").fadeIn(2000);
+});
+//fullpage
+define(['jquery', 'fullpage'], function ($, fullpage) {
   $('#fullpage').fullpage({
     anchors:['main', 'about', 'portfolio', 'contacts'],
     menu: "#menu",
@@ -17,11 +17,12 @@ $(document).ready(function() {
       }
     },
     afterRender: function(){
+      $(".wrapper, #links").addClass('novisible');
       $(".section.active .wrapper, .section.active .scrollDown").fadeOut();
       $(window).ready(function() {
-        $("#preload-box").delay(2000).fadeOut('slow');
-        $(".section.active .wrapper").delay(2500).removeClass("novisible").fadeIn(3000);
-        $(".section.active .scrollDown").delay(2000).fadeIn(6000);
+        $("#preload-box").delay(1000).fadeOut('slow');
+        $(".section.active .wrapper").delay(1500).removeClass("novisible").fadeIn(3000);
+        $(".section.active .scrollDown").delay(1000).fadeIn(6000);
       });
     }
   });
