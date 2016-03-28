@@ -1,5 +1,4 @@
 var gulp = require('gulp'),
-    // mainBowerFiles = require('main-bower-files'),
 		// postcss = require('gulp-postcss');
 		// autoprefixer = require('autoprefixer'),
     // cssnano = require('cssnano'),
@@ -84,48 +83,6 @@ gulp.task('watch', function(){
 });
 
 gulp.task('default', ['build', 'watch']);
-
-// gulp.task('getJS', function() {
-//     return gulp.src(mainBowerFiles({
-//       "overrides": {
-//         "animate.css": {
-//           "main": []
-//         },
-//         "fullpage.js": {
-//           "main": [
-//             "jquery.fullPage.min.js",
-//           ]
-//         },
-//         "jquery": {
-//           "main": [
-//             "dist/jquery.min.js"
-//           ]
-//         }
-//       }
-//     })
-//   ).pipe(gulp.dest("dist"));
-// });
-
-// gulp.task('getCSS', function() {
-//     return gulp.src(mainBowerFiles({
-//       "overrides": {
-//         "animate.css": {
-//           "main": [
-//             "./animate.css"
-//           ]
-//         },
-//         "fullpage.js": {
-//           "main": [
-//             "jquery.fullPage.css"
-//           ]
-//         },
-//         "jquery": {
-//           "main": []
-//         }
-//       }
-//     })
-//   ).pipe(gulp.dest("dist"));
-// });
 
 gulp.task('webpack', function() {
   return gulp.src('src/entry.js')
