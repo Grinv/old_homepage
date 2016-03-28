@@ -11,7 +11,8 @@ module.exports = {
       alias: {
         jquery: "./jquery.min",
         fullpage: "./jquery.fullPage.min"
-      }
+      },
+      modulesDirectories: ["web_modules", "node_modules", "src/js"]
     },
     module: {
         loaders: [
