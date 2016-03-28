@@ -2,7 +2,7 @@ define(['jquery'], function ($) {
   $("#preload-box i").delay(10).fadeIn(2000);
 });
 //fullpage
-define(['jquery', 'fullpage'], function ($, fullpage) {
+define(['jquery', 'fullpage.js'], function ($, fullpage) {
   $('#fullpage').fullpage({
     anchors:['main', 'about', 'portfolio', 'contacts'],
     menu: "#menu",
