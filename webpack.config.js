@@ -2,7 +2,7 @@ var webpack = require("webpack");
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var extractCSS = new ExtractTextPlugin('../build/[name].css');
 module.exports = {
-    entry: "./src/entry.js",
+    entry: "./src/entry.coffee",
     output: {
         path: __dirname + "/build",
         filename: "main.js"
@@ -36,6 +36,14 @@ module.exports = {
             {
               test: /\.(jpe?g|png|gif|svg)$/i,
               loader: 'url?limit=10000!img?progressive=true'
+            },
+            {
+              test: /\.coffee$/,
+              loader: "coffee-loader"
+            },
+            {
+              test: /\.(coffee\.md|litcoffee)$/,
+              loader: "coffee-loader?literate"
             }
         ]
     },
