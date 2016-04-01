@@ -1,3 +1,4 @@
+User-agent: *
 Allow: /
 Disallow: /typography
 Disallow: /test.html
