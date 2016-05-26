@@ -30,7 +30,7 @@
     "cssnano": "^3.6.2",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.8.1",
-    "font-awesome": "^4.6.1",
+    "font-awesome": "^4.6.3",
     "fullpage.js": "^2.8.0",
     "gulp": "^3.9.0",
     "gulp-concat": "^2.6.0",
